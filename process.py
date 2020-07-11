@@ -8,6 +8,9 @@ data = pandas.read_csv("reviews.csv", names=["name", "date", "score", "review"],
 # drop scrapped duplicates
 data = data[~data.duplicated(subset=["name", "score", "review"], keep=False)]
 
+#remove_date = "Jun 19, 2020"
+#data = data[data["date"] != remove_date]
+
 print "Processing " + str(data.shape[0]) + " rows"
     
 # check metacritic sanity

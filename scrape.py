@@ -24,7 +24,7 @@ with open("reviews.csv", mode="wb") as f:
     it = 0;
     
     for page in datapages: #Remember to update the number of pages 
-        url = 'https://www.metacritic.com/game/playstation-4/the-last-of-us-part-ii/user-reviews?page='+str(page)
+        url = 'https://www.metacritic.com/game/playstation-4/the-last-of-us-part-ii/user-reviews?sort-by=date&num_items=100&page='+str(page)
         user_agent = {'User-agent': 'Mozilla/5.0'}
         response  = requests.get(url, headers = user_agent)
         time.sleep(rand.randint(1,5)) 
