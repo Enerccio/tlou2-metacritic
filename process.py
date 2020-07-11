@@ -1,6 +1,6 @@
 import pandas
 
-READ_N_ROWS = 13000
+READ_N_ROWS = None
 
 data = pandas.read_csv("reviews.csv", names=["name", "date", "score", "review"], nrows=READ_N_ROWS, 
     dtype={"name": str, "date": str, "score": pandas.np.int32, "review": str})
