@@ -1,4 +1,5 @@
 import pandas
+import sys
 
 READ_N_ROWS = None
 
@@ -23,9 +24,11 @@ data10 = data[data['score'] < 10]
 # both 0 and 10 dropped
 data_remove_extremes = data[(data['score'] > 0) & (data['score'] < 10)]
 
-print "Score average (no 0 reviews) " + str(data0.mean().item())
-print "Score average (no 10 reviews) " + str(data10.mean().item())
+print "Score average (no 0 reviews) " + str(data0.mean().item()) + ". Total 0 reviews: " + str(data[data["score"] == 0].shape[0])
+print "Score average (no 10 reviews) " + str(data10.mean().item()) + ". Total 10 reviews: " + str(data[data["score"] == 10].shape[0])
 print "Score average (no 0 or 10 reviews) " + str(data_remove_extremes.mean().item())
+
+sys.stdout.flush()
 
 # check for bots
 data_negative = data[(data['score'] >= 0) & (data['score'] <= 4)]
@@ -48,11 +51,13 @@ def print_bots_data(id, data):
     
     for r in revs:
         print "Users " + str(revs[r]) + " - review: " + str(r)
+        
+ 
     
 
 bots = get_bots(data)
 bots_negative = get_bots(data_negative)
-bots_mixed = get_bots(data_negative)
+bots_mixed = get_bots(data_mixed)
 bots_positive = get_bots(data_positive)
 
 print_bots("all", bots)
